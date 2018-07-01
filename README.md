@@ -373,7 +373,7 @@ Topics are useful to filter events produced by contract. In following example we
 ```javascript
 var Web3 = require("web3");
 var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-var abi = JSON.parse(fs.readFileSync("./target/TokenInterface.json"));
+var abi = JSON.parse(fs.readFileSync("./target/TokenContract.json"));
 var TokenContract = new web3.eth.Contract(abi, "0x7BA4324585CB5597adC283024819254345CD7C62", { from: web3.eth.defaultAccount });
 
 // Subscribe to the Transfer event
@@ -407,7 +407,7 @@ Now cd to `step-4` and build the contract:
 ```
 It should produce 2 files we need:
 - a compiled Wasm binary `./target/pwasm_tutorial_contract.wasm`
-- an ABI file: `./target/json/TokenInterface.json`
+- an ABI file: `./target/json/TokenContract.json`
 
 At this point we can use Web.js to connect to the Parity node and deploy Wasm `pwasm_tutorial_contract.wasm`. Run the following code in `node` console:
 
@@ -419,7 +419,7 @@ var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 // NOTE: if you run Kovan node there should be an address you've got in the "Option 2: Run Kovan node" step
 web3.eth.defaultAccount = "0x004ec07d2329997267ec62b4166639513386f32e";
 // read JSON ABI
-var abi = JSON.parse(fs.readFileSync("./target/json/TokenInterface.json"));
+var abi = JSON.parse(fs.readFileSync("./target/json/TokenContract.json"));
 // convert Wasm binary to hex format
 var codeHex = '0x' + fs.readFileSync("./target/pwasm_tutorial_contract.wasm").toString('hex');
 
